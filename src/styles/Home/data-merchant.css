@@ -1,0 +1,122 @@
+.container_data {
+     height: 130vh;
+     background-color: #000000;
+ 
+     @media (min-width: 1024px) {
+        display: flex;
+        flex-direction: column;
+        align-items: center; 
+    }
+ }
+ 
+ .card_data {
+    height: fit-content;
+    background-color: #171D1F;
+    border: 1px solid #3E3E3F;
+    border-radius: 8px;
+    margin: 10px;
+    
+    @media (min-width: 1024px) {
+        width: 50%;
+    }
+
+    .header_card_data {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 10px;
+        color: #81FE88;
+
+    }
+}
+
+.container_stock_products {
+    .list_items_data {
+        position: relative;
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+
+            li {
+                background-color: #3E3E3F;
+                color: #BCBCBC;
+                
+                display: flex;
+                justify-content: space-between;
+                border-radius: 8px;
+               
+
+                margin: 10px;
+                padding: 10px;
+            }
+        }
+
+
+        button {
+            font-weight: 600;
+            position: absolute;
+            top: -10px;
+            right: 10px;
+            border: none;
+            border-radius: 4px;
+            background-color: #ED4B4E;
+        }
+    }
+}
+
+
+.container_sold_products {
+    .list_items_data {
+        position: relative;
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+
+            li {
+                background-color: #3E3E3F;
+                color: #BCBCBC;
+                
+                display: flex;
+                justify-content: space-between;
+                border-radius: 8px;
+                
+                margin: 10px;
+                padding: 10px;
+            }
+        }
+
+        .buttons_list_item_data {
+            position: absolute;
+            
+            display: flex;
+            gap: 10px;
+            top: -10px;
+            right: 10px;
+
+            button {
+                font-weight: 600;
+                border: none;
+                border-radius: 4px;
+            }
+        }
+       
+    }
+}
+
+.Chart_data {
+    display: inline-block;
+    width: 90%; 
+    margin-top: 20px; 
+    padding: 20px; 
+    background-color: #171D1F; 
+    border-radius: 8px;
+    height: 90%; 
+}
+
+.data-info{
+    width: 100%;
+    display: flex;
+    flex-direction: row ;
+}
