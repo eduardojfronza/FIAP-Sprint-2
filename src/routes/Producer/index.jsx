@@ -24,14 +24,17 @@ const markets = [
         amount: "30 Unidades",
       },
     ],
+    location: "Avenida São Rafael - Salvado, BA",
     status: "open",
   },
   {
     products: marketProducts,
+    location: "Avenida São Rafael - Salvado, BA",
     status: "open",
   },
   {
     products: marketProducts,
+    location: "Avenida São Rafael - Salvado, BA",
     status: "negotiating",
   },
 ];
@@ -51,8 +54,11 @@ function ProducerHome() {
                 className="card_data container_stock_products"
                 key={marketIndex}
               >
-                <div className="header_card_data">
+                <div className="header_card_data market">
                   <h2>Comércio {marketIndex + 1}</h2>
+                  <p>
+                    <span>Endereço:</span> <span>{market.location}</span>
+                  </p>
                 </div>
                 <div className="list_items_data">
                   <ul>
