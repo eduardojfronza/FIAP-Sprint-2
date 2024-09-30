@@ -65,7 +65,7 @@ function ProducerData() {
             <div className="card_data container_sold_products">
               <div className="header_card_data">
                 <h2>Produtos vendidos</h2>
-                <Button type="button" children="Adicionar" variant="primary" />
+                <Button type="button" children="Adicionar" variant="minified" />
               </div>
 
               <div className="list_items_data">

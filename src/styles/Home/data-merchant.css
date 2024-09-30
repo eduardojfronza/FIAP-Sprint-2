@@ -62,6 +62,7 @@
       list-style: none;
 
       li {
+        position: relative;
         background-color: #3e3e3f;
         color: #bcbcbc;
 
@@ -72,6 +73,16 @@
         margin: 10px;
         padding: 10px;
       }
+
+      li button.card_remove_item {
+        position: absolute;
+        top: -12px;
+        right: 0;
+      }
+    }
+
+    ul.card_remove_item li {
+      margin: 24px 10px;
     }
 
     button {
