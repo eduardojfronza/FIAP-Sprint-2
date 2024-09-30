@@ -9,7 +9,7 @@ function Register() {
     function Submit(event) {
         event.preventDefault()
 
-        return window.location.href = '/login'
+        return window.location.href = '/'
     }
 
 

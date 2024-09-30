@@ -10,7 +10,7 @@ function Header(props) {
                         <nav className='navigation-producer'>
                             <ul>
                                 <li><Link to={'/home/producer'}>Home</Link></li>
-                                <li><Link>Dados</Link></li>
+                                <li><Link to={'/home/producer/data'}>Dados</Link></li>
                                 <li><Link>Meus produtos</Link></li>
                             </ul>
                         </nav>

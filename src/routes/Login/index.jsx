@@ -6,12 +6,12 @@ function Login() {
     function Submit(event) {
         event.preventDefault()
 
-        return window.location.href = '/home'
+        return window.location.href = '/home/merchant'
     }
 
 
-    function Redirect() {
-        return window.location.href = '/register'
+    function Redirect(url) {
+        return window.location.href = url
     }
 
     return (
@@ -27,8 +27,9 @@ function Login() {
                         </div>
 
                         <div className='buttons'>
-                            <Button type="button" children="Criar conta" variant="secondary" onClick={Redirect} />
-                            <Button type="submit" children="Entrar" variant="primary" />
+                            <Button type="button" children="Criar conta" variant="secondary" onClick={Redirect('/register')} />
+                            <Button type="button" children="Entrar produtor" variant="primary" onClick={Redirect('/home/producer')} />
+                            <Button type="submit" children="Entrar comerciante" variant="primary" />
                         </div>
                     </form>
                 </div>
