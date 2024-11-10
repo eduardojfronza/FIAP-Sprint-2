@@ -1,6 +1,9 @@
 .container_data {
-  height: 130vh;
+  height: 170vh;
   background-color: #000000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   @media (min-width: 1024px) {
     display: flex;
@@ -16,6 +19,9 @@
   border: 1px solid #3e3e3f;
   border-radius: 8px;
   margin: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s;
+
 
   @media (min-width: 1024px) {
     width: 50%;
@@ -27,6 +33,7 @@
     justify-content: space-between;
     padding: 20px 10px;
     color: #81fe88;
+    font-weight: bold;
   }
   .header_card_data.market {
     flex-direction: column;
@@ -75,19 +82,33 @@
         position: relative;
         background-color: #3e3e3f;
         color: #bcbcbc;
-
         display: flex;
         justify-content: space-between;
         border-radius: 8px;
-
         margin: 10px;
         padding: 10px;
+        transition: background-color 0.3s;
+
+        &:hover {
+          background-color: #4e4e50;
+        }
       }
 
       li button.card_remove_item {
         position: absolute;
         top: -12px;
         right: 0;
+        padding: 5px 10px;
+        background-color: #ed4b4e;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+
+        &:hover {
+          background-color: #ff6b6e;
+        }
       }
     }
 
@@ -103,6 +124,15 @@
       border: none;
       border-radius: 4px;
       background-color: #ed4b4e;
+      color: white;
+      cursor: pointer;
+      padding: 5px 12px;
+      transition: background-color 0.3s;
+      marg
+
+      &:hover {
+        background-color: #ff6b6e;
+      }
     }
   }
 }
@@ -118,19 +148,21 @@
       li {
         background-color: #3e3e3f;
         color: #bcbcbc;
-
         display: flex;
         justify-content: space-between;
         border-radius: 8px;
-
         margin: 10px;
         padding: 10px;
+        transition: background-color 0.3s;
+
+        &:hover {
+          background-color: #4e4e50;
+        }
       }
     }
 
     .buttons_list_item_data {
       position: absolute;
-
       display: flex;
       gap: 10px;
       top: -10px;
@@ -140,6 +172,14 @@
         font-weight: 600;
         border: none;
         border-radius: 4px;
+        padding: 5px 10px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+
+        &:hover {
+          background-color: #ed4b4e;
+          color: white;
+        }
       }
     }
   }
@@ -153,6 +193,7 @@
   background-color: #171d1f;
   border-radius: 8px;
   height: 90%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
 .data-info {
@@ -160,3 +201,151 @@
   display: flex;
   flex-direction: row;
 }
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #171d1f;
+  padding: 30px;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 90%;
+  color: #bcbcbc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.modal-content label {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  color: #81fe88;
+}
+
+.modal-content input {
+  padding: 10px;
+  border: 1px solid #3e3e3f;
+  border-radius: 4px;
+  background-color: #2c2f31;
+  color: #bcbcbc;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.modal-content input:focus {
+  border-color: #81fe88;
+}
+
+.button-open-modal {
+  background-color: #81fe88;
+  color: #000;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  margin: 10px;
+}
+
+.button-open-modal:hover {
+  background-color: #6fe377;
+  transform: translateY(-2px);
+}
+
+.button-open-modal:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(129, 254, 136, 0.5);
+}
+
+.modal-content button {
+  padding: 10px 20px;
+  background-color: #81fe88;
+  margin-right: 20px;
+  color: #000;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.modal-content button:hover {
+  background-color: #6fe377;
+}
+
+.modal-content .cancel-button {
+  background-color: #ed4b4e;
+  color: white;
+}
+
+.modal-content .cancel-button:hover {
+  background-color: #ff6b6e;
+}
+
+/* Input Field Styling */
+.input-field {
+  padding: 10px;
+  margin: 10px 0;
+  width: 80%;
+  border: 1px solid #3e3e3f;
+  border-radius: 4px;
+  background-color: #2c2f31;
+  color: #bcbcbc;
+  outline: none;
+  transition: border-color 0.3s, background-color 0.3s;
+}
+
+.input-field:focus {
+  border-color: #81fe88;
+  background-color: #3e4549;
+}
+
+.input-field::placeholder {
+  color: #bcbcbc;
+  opacity: 0.8;
+}
+
+/* Button Styling */
+.add-button,
+.button-open-modal,
+.modal-content button {
+  background-color: #81fe88;
+  color: #000;
+  padding: 10px 10px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  margin: 10px;
+}
+
+.add-button:hover,
+.button-open-modal:hover,
+.modal-content button:hover {
+  background-color: #6fe377;
+  transform: translateY(-2px);
+}
+
+.add-button:focus,
+.button-open-modal:focus,
+.modal-content button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(129, 254, 136, 0.5);
+}
+
+

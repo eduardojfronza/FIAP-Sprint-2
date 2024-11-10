@@ -8,16 +8,19 @@ function Header(props) {
         return (
           <>
             <header className="header">
-              <nav className="navigation-producer">
+              <nav className="navigation">
                 <ul>
                   <li>
-                    <Link to="/producer">Home</Link>
+                    <Link to="/producer">home</Link>
                   </li>
                   <li>
-                    <Link to="/producer/data">Dados</Link>
+                    <Link to="/producer/data">dados</Link>
                   </li>
                   <li>
-                    <Link to="/producer/products">Meus produtos</Link>
+                    <Link to="/producer/products">meus produtos</Link>
+                  </li>
+                  <li>
+                    <Link to="/">sair</Link>
                   </li>
                 </ul>
               </nav>
@@ -29,9 +32,14 @@ function Header(props) {
         return (
           <>
             <header className="header">
-              <div className="navigation-merchant">
-                <p>Comerciante</p>
-              </div>
+              <nav className="navigation">
+                <ul>
+                  <li>
+                    <Link to="/">sair</Link>
+                  </li>
+                </ul>
+              </nav>
+              <p>Comerciante</p>
             </header>
           </>
         );

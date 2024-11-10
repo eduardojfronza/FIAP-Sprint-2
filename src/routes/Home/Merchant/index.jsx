@@ -1,80 +1,162 @@
-import '../../../styles/Home/Merchant.css'
-import { LuFilter } from "react-icons/lu";
-
-
-import Button from "../../../components/Button"
-import Header from "../../../components/Header"
-
+import { useState } from "react";
+import "../../../styles/Home/Merchant.css";
+import Header from "../../../components/Header";
+import Modal from "../../../components/Modal";
 
 function Merchant() {
-    const missingProducts = [
-        {
-            name: 'Laranja',
-            amount: '90 Unidades',
-        },
-        {
-            name: 'Maça',
-            amount: '30 Unidades ',
-        },
-        {
-            name: 'Batata',
-            amount: '30 Quilos',
-        }
-    ]
+  const [products, setProducts] = useState([
+    { name: "Laranja", amount: "90 Unidades" },
+    { name: "Maçã", amount: "30 Unidades" },
+    { name: "Batata", amount: "30 Quilos" },
+  ]);
 
+  const [producerProducts] = useState([
+    { name: "Melancia", amount: "50 Unidades" },
+    { name: "Cenoura", amount: "100 Quilos" },
+    { name: "Tomate", amount: "40 Unidades" },
+  ]);
 
-    return <>
-        <Header user={'Comerciante'} />
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [newProduct, setNewProduct] = useState({ name: "", amount: "" });
 
-        <main>
-            <section className='container_merchant'>
-                <div className="card_merchant container_missing_products">
-                    <div className='header_card_merchant'>
-                        <h2>Produtos em falta</h2>
-                        <Button type="button" children="Adicionar" variant="primary" />
-                    </div>
+  const [producerStatus, setProducerStatus] = useState("");
 
-                    <div className='list_items_merchant'>
-                        <ul>
-                            {missingProducts.map((product, index) =>
-                                < li key={index} >
-                                    <p>{product.name}</p>
-                                    <span>{product.amount}</span>
-                                    <button>Remover</button>
-                                </li>
-                            )}
-                        </ul>
-                    </div>
-                </div>
+  const addProduct = (newProduct) => {
+    if (newProduct.name.trim() !== "" && newProduct.amount.trim() !== "") {
+      setProducts((prevProducts) => [...prevProducts, newProduct]);
+    } else {
+      console.warn("Produto inválido");
+    }
+    setNewProduct({ name: "", amount: "" });
+    setModalOpen(false);
+  };
 
-                <div className='card_merchant container_procuder_deal'>
-                    <div className='header_card_merchant'>
-                        <h2>Produtores</h2>
-                        <LuFilter style={{ fontSize: "22px" }} />
-                    </div>
+  const removeProduct = (indexToRemove) => {
+    setProducts((prevProducts) =>
+      prevProducts.filter((_, index) => index !== indexToRemove)
+    );
+  };
 
-                    <div className='list_items_merchant'>
-                        <ul>
-                            {missingProducts.map((product, index) =>
-                                < li key={index} >
-                                    <p>{product.name}</p>
-                                    <span>{product.amount}</span>
+  const handleStatusChange = (status) => {
+    setProducerStatus(status);
+  };
 
-                                    <div className='buttons_list_item_merchant'>
-                                        <button style={{ backgroundColor: "#ED4B4E" }}>Remover</button>
-                                        <button style={{ backgroundColor: "#F6FE81" }}>Negociar</button>
-                                        <button style={{ backgroundColor: "#81FE88" }}>Finalizar</button>
-                                    </div>
+  const handleResetStatus = () => {
+    setProducerStatus("");
+  };
 
-                                </li>
-                            )}
-                        </ul>
-                    </div>
+  return (
+    <>
+      <Header user={"Comerciante"} />
 
-                </div>
-            </section>
-        </main >
+      <main>
+        <section className="container_merchant">
+          <div className="card_merchant container_missing_products">
+            <div className="header_card_merchant">
+              <h2>Produtos em falta</h2>
+              <button
+                type="button"
+                className="button-open-modal"
+                onClick={() => setModalOpen(true)}
+              >
+                Adicionar Produto
+              </button>
+            </div>
+
+            <div className="list_items_merchant">
+              <ul className="card_remove_item">
+                {products.map((product, index) => (
+                  <li key={index} className="product-item">
+                    <p>{product.name}</p>
+                    <span>{product.amount}</span>
+                    <button
+                      type="button"
+                      className="remove-button"
+                      onClick={() => removeProduct(index)}
+                    >
+                      Remover
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          {/* Card de Produtores */}
+          <div
+            className={`card_merchant container_producer_deal ${
+              producerStatus === "Em Negociação" ? "status-negotiating" : ""
+            } ${producerStatus === "Finalizado" ? "status-finalized" : ""}`}
+          >
+            {producerStatus && (
+              <div className="status-overlay">{producerStatus}</div>
+            )}
+            <div className="header_card_merchant">
+              <h2>Produtores</h2>
+              <div className="buttons_list_item_merchant">
+                <button
+                  className="button-negotiate"
+                  onClick={() => handleStatusChange("Em Negociação")}
+                >
+                  Negociar
+                </button>
+                <button
+                  className="button-finalize"
+                  onClick={() => handleStatusChange("Finalizado")}
+                >
+                  Concluir
+                </button>
+              </div>
+            </div>
+
+            <div className="list_items_merchant">
+              <ul>
+                {producerProducts.map((product, index) => (
+                  <li key={index} className="product-item">
+                    <p>{product.name}</p>
+                    <span>{product.amount}</span>
+                  </li>
+                ))}
+              </ul>
+              {producerStatus && (
+                <button className="button-reset" onClick={handleResetStatus}>
+                  Voltar
+                </button>
+              )}
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => setModalOpen(false)}
+        onConfirm={() => addProduct(newProduct)}
+      >
+        <h3>Adicionar Produto</h3>
+        <label>
+          Nome:
+          <input
+            type="text"
+            value={newProduct.name}
+            onChange={(e) =>
+              setNewProduct({ ...newProduct, name: e.target.value })
+            }
+          />
+        </label>
+        <label>
+          Quantidade:
+          <input
+            type="text"
+            value={newProduct.amount}
+            onChange={(e) =>
+              setNewProduct({ ...newProduct, amount: e.target.value })
+            }
+          />
+        </label>
+      </Modal>
     </>
+  );
 }
 
-export default Merchant
+export default Merchant;

@@ -1,4 +1,4 @@
-import { redirect } from "react-router-dom";
+import { Link, redirect } from "react-router-dom";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
 import Select from "../../components/Select";
@@ -30,7 +30,9 @@ function Register() {
             </div>
 
             <div className="buttons">
-              <Button type="submit" children="Entrar" variant="primary" />
+              <Link to="/producer">
+                <Button type="submit" children="Entrar" variant="primary" />
+              </Link>
             </div>
           </form>
         </div>
@@ -40,4 +42,3 @@ function Register() {
 }
 
 export default Register;
-
