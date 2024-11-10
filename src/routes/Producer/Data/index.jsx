@@ -4,7 +4,7 @@ import ProductsChart from "../../../components/Chart";
 import "../../../styles/Home/data-merchant.css";
 
 function ProducerData() {
-  const [setProducts] = useState([]);
+  const [products, setProducts] = useState([]);
   const [newProduct, setNewProduct] = useState({
     name: "",
     amount: "",
